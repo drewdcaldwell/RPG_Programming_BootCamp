@@ -1,0 +1,131 @@
+//***********************************************
+//		Program Structure:
+//***********************************************
+RPG requires writing code in a particular sequence:
+
+- **FREE (if using free form must be the first 6 characters in the source)
+- Control Options
+- Declarations (files, variables, data structures, etc)
+- Calculations (variable assignments, operation codes, functions)
+- subroutines
+- subprocedures
+//***********************************************
+//		Declaring Program Variables:
+//***********************************************
+The syntax to declare a variable in RPG is:
+
+dcl-s VARIABLE_NAME_HERE DATA-TYPE(LENGTH) KEYWORDS;
+
+- dcls-s means "Declare standalone variable"
+- It is standalone because it is not part of a data structure, parameter list, or anything else. 
+  It is quite literally just a single variable.
+- RPG is a strongly typed language. What does that mean?
+  Strongly typed means that each variable is defined to be a specific type and specified in it's declaration.
+- We will discuss the different data types and keywords in future videos
+- For now "char" is for a character variable.
+- To define a variable that holds 12 characters we would use,
+			dcl-s Hello char(12);
+
+//***********************************************			
+//		Assigning a Value to a Variables
+//***********************************************
+
+Assigning a value is done with the EVAL operation code.
+
+EVAL Variable = expression;
+
+- However "EVAL" is the default operation code!
+- A line that does not start with a different operation is assumed to be EVAL.
+- Therfore to assign text to the HELLO variable I can code:
+
+EVAL Hello = "Hello World!";
+
+- OR -
+
+Hello = "Hello World!"; // This is because the default operation code is EVAL...
+
+//***********************************************
+//		The DSPLY Operation Code
+//***********************************************
+DSPLY (Short for "Display") is a quick way to display text.
+Syntax:
+		DSPLY Message MessageQueue Response;
+
+- DSPLY is not usually used in "production quality" programs, but is good for quick ("one-off") testing.
+- The three paramter syntax is extremely common in RPG
+--> Factor1, Factor2, Result
+- For DSPLY, MEssageQueue and Response are optional
+- To display the contents of the "Hello" variable, I can code:
+
+		DSPLY Hello;
+		
+- DSPLY is not normally used in Production in real business. DSPLY is quick and dirty, ugly, and not very intuitive.
+  Really we only need it for testing. We will look at a more sophisticated option for displaying later.
+
+//***********************************************  
+//		Ending an RPG Program
+//***********************************************
+RPG programs will end when a RETURN opcode is found, or when it reaches the end of the code.
+
+However, you should turn on the "Last Record" (LR) Indicator first (This is a FLAG).
+- LR tells RPG to do extra clean up when the program ends.
+- Closes any files left open.
+- Resets variables back to their initial values.
+- You can refer to LR as *INLR in your code. 
+- The special value *ON turns it on, or *OFF turns it off.
+
+		*INLR = *ON;
+		RETURN
+		
+		
+
+//*******************************************************************************************
+//
+//				HELLO WORLD RPGLE EXAMPLE PROGRAM
+//            FILE PATH: 
+//
+//*******************************************************************************************
+
+//***********************************************
+//		Compiling an RPG Program
+//***********************************************
+
+ILE RPG Programs are built in two steps:
+
+1. The source code is compiled into a "module"
+	- Equivalent to creating an "object" on other platforms
+2. The module is "bound" to create a "program"
+	- Equivalent to "linking" on other platforms
+
+It is also possible to create programs from multiple modules, and to build "service programs" 
+( similar to shared libraries or DLL's on other platforms.) This will be discussed later...
+
+//***********************************************
+//		Commands to Create a Program
+//***********************************************
+
+To create a module:
+		CRTRPGMOD = create RPG module
+	
+To create a program from one or more modules:
+		CRTPGM = create program
+		
+IBM also supplies a "shortcut" that will create a temporary module, then create a program from
+that module, in one step:
+		CRTBNDRPG = Create Bound RPG Program
+
+These can all be run from the command line or from the Compile menu in RDi
+
+//***********************************************
+//		Command to Run a Program
+//***********************************************
+
+To run an RPG program:
+		CALL = call a program
+		
+For our HELLO WORLD program (or other programs that are meant to use the green screen interface) you would
+run this from a green screen terminal session.
+
+(This is also known as a "5250 emulation session" after the IBM 5250 terminal.)
+
+
