@@ -1,0 +1,56 @@
+//***********************************************
+//		How an RPG Program is put together
+//***********************************************
+
+//***********************************************
+//		Terms to Know								
+//***********************************************
+
+Files - Collection of data about a given kind of entity or object.
+
+	- Physical File: Contains physical data
+	- Logical File: Customized view of the data within a physical file
+	
+Table - File but created with SQL
+
+										ITEM MASTER
+_________________________________________________________________________________________________
+|	Item Number		|	Item Location	|	Item Cost	|	Qty on Hand		|	Qty on Order	|
+-------------------------------------------------------------------------------------------------
+|	10001           |	Arkansas		|	40.321	 	|	23				|	0				|
+|	10002           |	Arkansas		|	12.574	 	|	12				|	12				|
+|	20001           |	California		|	5.002	 	|	124				|	54				|
+|	30001           |	Alaska  		|	6.012	 	|	24				|	30				|
+-------------------------------------------------------------------------------------------------
+
+Row/Records - The individual data that makes up a member, which makes up a file
+	- Represented Horizontally in a table/file
+Members - Individual groups or sets of data within the file.
+
+|	Item Number		|	Item Location	|	Item Cost	|	Qty on Hand		|	Qty on Order	|
+-------------------------------------------------------------------------------------------------
+|	10001           |	Arkansas		|	40.321	 	|	23				|	0				|
+
+
+Columns/Fields - Known location of a unit of held data
+	- Represented Verically
+									|	Qty on Hand		|
+									---------------------
+									|	40.321	 	    |
+									
+
+View - Logical view of a database
+
+	ex. _________________________________________________________________________________________________
+		|
+		|	Create View EMPINFO (Employee, FirstName, LastName, Team, JobTitle)
+		|		   As Select EMPNO, FirstName, LastName, Dept, JobTitle
+		|          From EMP;
+
+
+EMP Table contains EMPNO, FIRSTNAME, LASTNAME, DEPT, HIREDATE, JOB, EDL, SALARY, COMM
+	
+Then the view EMPINFO would contaion EMPLOYEE, FIRSTNAME, LASTNAME, TEAM, JobTitle
+
+
+		
